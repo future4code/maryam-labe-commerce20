@@ -10,33 +10,29 @@ const CartShopping = styled.div`
    font-family: Gill Sans Extrabold, sans-serif;
    
 `
+// const ValorTotal = styled.p`
+//         margin-top: 5em;
+// ` 
+    
 const Button = styled.button`
     margin-left: 10em;
     margin-top: 5em;
 `
-const ValorTotal = styled.p`
-        margin-top: 5em;
-` 
-    
-
-
 
 
 export class ShoppingCart extends React.Component{
- 
-
 
     render() {
-    
-
-        return(
-            <div>
+            return(
+             
             <CartShopping>
+
             <h1>Carrinho</h1>
-            <Button> Remover Produto</Button>
-            <ValorTotal>Valor total:</ValorTotal>
+            {/* <ValorTotal>Valor Total: R${this.valorDaCompra()},00</ValorTotal> */}
+            <Button onClick={this.props.removerCarrinho}>Remove Produto</Button>
             </CartShopping>
-            </div>
+            
+            
         )
-    };
+    }
 }

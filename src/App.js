@@ -95,14 +95,33 @@ class App extends React.Component {
 }
 
 adicionarCarrinho = (id) =>{
-    const carrinhoProduto = this.state.produtoCard.find(produtoCard => produtoCard.id === id)
+    const adicionarProduto = this.state.produtoCard.find(produto => produto.id === id)
 
-    const arrayDeCarrinho = [...this.state.carrinho, carrinhoProduto];
-    this.setState({carrinho: arrayDeCarrinho});
+    if(adicionarProduto){
+      const produtosAdicionados = this.state.adicionarProduto.map((produto)=>{
+        if(id === produto.id){
+          return {...produto, quantidade: produto.quantidade +1}
+        }
+        return produto
+      })
+      this.setState({adicionarProduto: produtosAdicionados})
+    }
+
+
 }
 
-adicionarBusca = () =>{
+removerCarrinho = (id) =>{
+  const removerProduto = this.state.produtoCard.find(produto => produto.id === id)
 
+    if(removerProduto){
+      const produtosRemovidos = this.state.removerProduto.map((produto)=>{
+        if(id === produto.id){
+          return {...produto, quantidade: produto.quantidade +1}
+        }
+        return produto
+      })
+      this.setState({adicionarProduto: produtosRemovidos})
+    }
 }
 
 onChangeFilterMax (event){
@@ -144,10 +163,11 @@ render (){
           onChangeFilterBusca={this.onChangeFilterBusca}
           />
           <ShoppingCart 
-          
+              removerCarrinho={this.removerCarrinho}
           />
           <Produtos
           produtoCard={this.state.produtoCard}
+          adicionarCarrinho={this.adicionarCarrinho}
           />
           
       </div>

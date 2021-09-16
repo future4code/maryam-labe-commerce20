@@ -28,7 +28,8 @@ export class Produtos extends React.Component{
                 <h5>{produto.nome}</h5>
                 <p>{produto.preco}</p>
                 <p>{produto.quantidade}</p>
-                <button>Adicionar Produto</button>
+                <button onClick={this.props.adicionarCarrinho(this.props.produto)}>Adicionar Produto</button>
+                
             </CardProduto>
         })
         
