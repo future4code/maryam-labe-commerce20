@@ -2,42 +2,36 @@ import React from 'react';
 import styled from 'styled-components'
 
 const CardProduto = styled.div`
-   display:grid;
-   grid-template-columns: repeat(4, 1fr);
-   border: 1px solid black;
-   width: 20vw;
-
-
-   img{
-       width: 60px;
-   }
-
-   button{
-    width: 80px;
-   }
+    border: 1px solid black;
+    img: width: 60px;
+    button: width: 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 16px;
 
 `
-
-
 export class Produtos extends React.Component{
+
     render(){
 
-        const produtoId = this.props.produtoCard.map((produto)=>{
-            return <CardProduto>
-                <img src={produto.foto}/>
+        const produto = this.props.produtoCard.map((produto => {
+
+        return <div key={produto.id}>
+                <img src={produto.foto} />
                 <h5>{produto.nome}</h5>
                 <p>{produto.preco}</p>
                 <p>{produto.quantidade}</p>
                 <button>Adicionar Produto</button>
-            </CardProduto>
-        })
+                </div>
+        } ) )
         
-
         return (
             <CardProduto>
-                 {produtoId}
-                 
+                {produto}
             </CardProduto>
         )
+        }
     }
-}
+
+export default Produtos
