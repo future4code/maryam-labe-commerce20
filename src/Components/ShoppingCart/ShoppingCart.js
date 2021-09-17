@@ -3,11 +3,9 @@ import styled from 'styled-components'
 
 
 const CartShopping = styled.div`
-   margin-top: 10px;
-   border: 1px solid black;
-   width: 20vw;
-   height: 90vh;
-   font-family: Gill Sans Extrabold, sans-serif;
+    padding: 8px;
+    border: 1px solid black;
+    font-family: Gill Sans Extrabold, sans-serif;
    
 `
 const Button = styled.button`
@@ -18,10 +16,6 @@ const ValorTotal = styled.p`
         margin-top: 5em;
 ` 
     
-
-
-
-
 export class ShoppingCart extends React.Component{
  
 

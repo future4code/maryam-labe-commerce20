@@ -1,57 +1,31 @@
-import React from 'react';
-import styled from 'styled-components'
+import React from 'react'
 
+export class Filtros extends React.Component {
+    render() {
 
-const Filtragem = styled.div`
-   margin-top: 10px;
-   border: 1px solid black;
-   width: 20vw;
-   height: 90vh;
-   font-family: Gill Sans Extrabold, sans-serif;
+      return <Filtros>
 
-`
-const Inputs = styled.div`
-    display: flex;
-    flex-direction:column;
-    width: 15vw;
-`
-
-export class Filtros extends React.Component{
-
-
-
-    render(){
-
-
-        return(
-            <Filtragem>
-                <h1>Filtros</h1>
-            <Inputs>
-                <p>Valor Mínimo</p>
-               <input
-               text= "Number"
-               value={this.props.filterMin}
-               onChange={this.props.onChangeFilterMin}
-               />
-            </Inputs>
-            <Inputs>
-                <p>Valor Máximo</p>
-               <input
-               text= "Number"
-               value={this.props.filterMax}
-               onChange={this.props.onChangeFilterMax}
-               />
-               </Inputs>
-               <Inputs>
-                 <p>Busca Por Nome</p>
-               <input
-               text= "Number"
-               value={this.props.filterBusca}
-               onChange={this.props.onChangeFilterBusca}
-               />
-               </Inputs>
-            
-            </Filtragem>
-        )
-    }
+        <h1>Filtros</h1>
+          <p>Valor Mínimo:</p>
+            <input type="number"
+              name={'valor mínimo'}
+              onChange = {this.props.filtraMin}
+              value = {this.props.filterMin} 
+              />
+          <p>Valor Máximo:</p>
+            <input type="number"
+                name={'valor máximo'}
+                onChange = {this.props.filtraMax}
+                value = {this.props.filterMax} 
+                />
+          <p>Busca por nome:</p>
+              <input name={'busca por nome'}
+                onChange = {this.props.filtraNome}
+                value = {this.props.filterBusca} 
+              /> 
+              
+    </Filtros>
 }
+}
+
+export default Filtros
