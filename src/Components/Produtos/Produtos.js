@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 
+
 const CardProduto = styled.div`
    display:grid;
    grid-template-columns: repeat(4, 1fr);
@@ -20,25 +21,25 @@ const CardProduto = styled.div`
 
 
 export class Produtos extends React.Component{
-    render(){
-
-        const produtoId = this.props.produtoCard.map((produto)=>{
-            return <CardProduto>
-                <img src={produto.foto}/>
-                <h5>{produto.nome}</h5>
-                <p>{produto.preco}</p>
-                <p>{produto.quantidade}</p>
-                <button onClick={this.props.adicionarCarrinho(this.props.produto)}>Adicionar Produto</button>
-                
-            </CardProduto>
-        })
         
 
-        return (
-            <CardProduto>
-                 {produtoId}
-                 
-            </CardProduto>
-        )
+    render(){
+            
+
+     
+        
+        const produto = this.props.produtos
+              return <div>
+          <img src={produto.foto} alt='imagens de Planetas'/>
+          <div>
+            <p>{produto.nome}</p>
+            <p>R${produto.preco},00</p>
+            <button onClick={() => this.props.adicionarCarrinho(produto.id)}></button>
+              Adicionar ao carrinho
+            
+          </div>
+        </div>
+        
+          
     }
 }

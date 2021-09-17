@@ -1,54 +1,13 @@
 import React from 'react';
 import {Filtros} from './Components/Filtros/Filtros'
-import {ShoppingCart} from './Components/ShoppingCart/ShoppingCart';
+import {ShoppingCart} from './Components/ShoppingCart/ShoppingCart'
 import {Produtos} from './Components/Produtos/Produtos'
-
-// import styled from 'styled-components'
-
-// const listaDeProdutos = [
-//   {
-//     id: 1,
-//     nome: 'Viagem a Lua',
-//     preco: 3000,
-//     quantidade: 3,
-//     foto: 'https://picsum.photos/200/200?a=4'
-// },
-// {
-// id: 2,
-// nome: 'Viagem a Terra',
-// preco: 3000,
-// quantidade: 3,
-// foto: 'https://picsum.photos/200/200?a=4'
-// },
-// {
-//     id: 3,
-//     nome: 'Viagem ao Sol',
-//     preco: 3000,
-//     quantidade: 3,
-//     foto: 'https://picsum.photos/200/200?a=4'
-// },
-// {
-// id: 4,
-// nome: 'Viagem ao Lua',
-// preco: 3000,
-// quantidade: 3,
-// foto: 'https://picsum.photos/200/200?a=5'
-// },
-// {
-// id: 5,
-// nome: 'Viagem a Plutão',
-// preco: 3000,
-// quantidade: 3,
-// foto: 'https://picsum.photos/200/200?a=4'
-// }
-// ]
-
 
 
 
 class App extends React.Component {
   state={
-    produtoCard:[
+    produtos:[
 
         {
             id: 1,
@@ -89,40 +48,52 @@ class App extends React.Component {
     filterMax: '5',
     filterMin: '1',
     filterBusca: 'Buscar Produtos',
-    carrinho: []
 
 
 }
 
 adicionarCarrinho = (id) =>{
-    const adicionarProduto = this.state.produtoCard.find(produto => produto.id === id)
-
-    if(adicionarProduto){
-      const produtosAdicionados = this.state.adicionarProduto.map((produto)=>{
-        if(id === produto.id){
-          return {...produto, quantidade: produto.quantidade +1}
+  
+  const adicionarProduto = this.state.produtos.find(produto => produto.id === id)
+  if(adicionarProduto) {
+    const novaListaCarrinho = this.state.produtos.map(produto => {
+      if(id === produto.id) {
+        return {
+          ...produto,
+          quantidade: produto.quantidade + 1
         }
+      }
         return produto
-      })
-      this.setState({adicionarProduto: produtosAdicionados})
-    }
+    })
+       this.setState({adicionarProduto: novaListaCarrinho})
+
+  }
 
 
+  // const arrayCarrinho = [...this.state.carrinho, adicionarCarrinho + 1]
+  // this.setState({carrinho: arrayCarrinho})
+  
 }
+
 
 removerCarrinho = (id) =>{
-  const removerProduto = this.state.produtoCard.find(produto => produto.id === id)
-
-    if(removerProduto){
-      const produtosRemovidos = this.state.removerProduto.map((produto)=>{
-        if(id === produto.id){
-          return {...produto, quantidade: produto.quantidade +1}
-        }
-        return produto
-      })
-      this.setState({adicionarProduto: produtosRemovidos})
+  const removerProduto = this.state.produtos.map((produto) => {
+  if(produto.id === id) {
+    return {
+      ...produto,
+      quantidade: produto.quantidade - 1
     }
+  }
+  return produto
+}).filter((produto) => produto.quantidade > 0)
+
+this.setState({produtos: removerProduto})
 }
+
+  // const arrayRemover = [...this.state.carrinho, removerCarrinho -1]
+  // this.setState({carrinho: arrayRemover })
+  
+
 
 onChangeFilterMax (event){
   this.setState({filterMax: event.target.value })
@@ -162,11 +133,13 @@ render (){
           filterBusca={this.state.filterBusca}
           onChangeFilterBusca={this.onChangeFilterBusca}
           />
-          <ShoppingCart 
-              removerCarrinho={this.removerCarrinho}
-          />
+         <ShoppingCart 
+            produtos={this.state.produtos} 
+            removerCarrinho={this.removerCarrinho}
+         
+         />
           <Produtos
-          produtoCard={this.state.produtoCard}
+          produtos={this.state.produtos}
           adicionarCarrinho={this.adicionarCarrinho}
           />
           
