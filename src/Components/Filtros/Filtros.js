@@ -13,7 +13,7 @@ const Filtragem = styled.div`
 const Inputs = styled.div`
     display: flex;
     flex-direction:column;
-    width: 16vw;
+    width: 17vw;
 `
 
 export class Filtros extends React.Component{
